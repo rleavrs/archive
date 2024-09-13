@@ -58,5 +58,6 @@ if [ $1 == 'split' ]; then
 elif [ $1 == 'combine' ]; then
 	combine
 elif [ $1 == 'uncompress' ]; then
+	combine
 	uncompress
 fi
