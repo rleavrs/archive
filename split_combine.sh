@@ -24,8 +24,39 @@ combine()
 	done
 }
 
+uncompress()
+{
+	echo 'begin uncompress files'
+	for file in `ls | grep -v $0`;
+	do
+		case "${file}" in
+		    *.tar) 
+		        tar xvf "${file}"
+		        ;;
+		    *.tar.gz) 
+		        tar zxvf "${file}"
+		        ;;
+		    *.tar.xz)
+		        tar Jxvf "${file}"
+		        ;;
+		    *.tar.bz2)
+		        tar jxvf "${file}"
+		        ;;
+		    *.zip)
+		        unzip "${file}"
+		        ;;
+		    *)
+		        echo "not support uncompress: ${file}"
+		        exit 1
+		        ;;
+		esac
+	done
+}
+
 if [ $1 == 'split' ]; then
 	split
 elif [ $1 == 'combine' ]; then
 	combine
+elif [ $1 == 'uncompress' ]; then
+	uncompress
 fi
